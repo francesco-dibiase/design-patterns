@@ -18,9 +18,9 @@ namespace DesignPatterns.BehavioralPatterns.Memento
         {
             return new Originator(_CurrentFont, _Style, Text)
             {
-                _CursorPosition = this._CursorPosition,
-                _Selection = this._Selection,
-                Text = this.Text
+                _CursorPosition = _CursorPosition,
+                _Selection = _Selection,
+                Text = Text
             };
         }
 
