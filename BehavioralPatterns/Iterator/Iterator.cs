@@ -11,6 +11,7 @@ namespace DesignPatterns.BehavioralPatterns.Iterator
         }
         public T CurrentItem()
         {
+            Console.WriteLine($"[ -- ] Current item on the list: {_collection[Index]}");
             return _collection[Index];
         }
 
