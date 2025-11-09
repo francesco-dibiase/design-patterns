@@ -1,10 +1,11 @@
-﻿using AppStudio.PatternsApp.Utility;
+using AppStudio.PatternsApp.Utility;
 
 namespace DesignPatterns.BehavioralPatterns.ChainOfResponsibility
 {
     public interface IHandler
     {
-        public void HandleRequest(IssueType issue);
+        public bool HandleRequest(IssueType issue);
         public IHandler SetNext(IHandler handler);
+        public string GetTypeOfHandler();
     }
 }
