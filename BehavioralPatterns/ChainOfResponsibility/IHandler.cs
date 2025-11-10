@@ -1,4 +1,4 @@
-using AppStudio.PatternsApp.Utility;
+using DesignPatterns.Utility;
 
 namespace DesignPatterns.BehavioralPatterns.ChainOfResponsibility
 {
