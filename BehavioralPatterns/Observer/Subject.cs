@@ -1,4 +1,4 @@
-using AppStudio.PatternsApp.Utility;
+using DesignPatterns.Utility;
 
 namespace DesignPatterns.BehavioralPatterns.Observer
 {
@@ -38,5 +38,5 @@ namespace DesignPatterns.BehavioralPatterns.Observer
             SubjectState = state;
             Notify();
         }
-    } 
+    }
 }

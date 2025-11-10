@@ -8,6 +8,7 @@ namespace DesignPatterns
             Client.ChainOfResponsibilityImplementation();
             Client.CommandImplementation();
             Client.IteratorImplementation();
+            Client.MediatorImplentation();
         }
     }
 }
