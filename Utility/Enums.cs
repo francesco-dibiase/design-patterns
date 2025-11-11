@@ -1,4 +1,4 @@
-﻿namespace AppStudio.PatternsApp.Utility
+namespace DesignPatterns.Utility
 {
     public enum States
     {
@@ -12,5 +12,13 @@
         Issue02 = 1,
         Issue03 = 2,
         Issue04 = 3
+    }
+    public enum ColleagueType
+    {
+        Colleague01 = 0,
+        Colleague02 = 1,
+        Colleague03 = 2,
+        Colleague04 = 3,
+
     }
 }
