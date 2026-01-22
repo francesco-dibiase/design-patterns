@@ -4,22 +4,21 @@ using DesignPatterns.Utility;
 
 namespace DesignPatterns.BehavioralPatterns.Mediator
 {
-    public class Colleague : IColleague
+    public class Colleague : AbstractColleague
     {
-        private IMediator _Mediator;
-        public ColleagueType operationType { get; }
+        private readonly string _Name;
+        public Colleague(IMediator mediator, string name) : base(mediator: mediator) { _Name = name; }
 
-        public Colleague(IMediator mediator, ColleagueType operationType)
+        override public void DoOperation(string @event)
         {
-            this._Mediator = mediator;
-            this.operationType = operationType;
+            Console.WriteLine($"[ -- ] This colleague named {_Name} is doing his operations, and soon the mediator" +
+                $" will notify to other colleagues.");
+            _Mediator.Notify(this, @event);
         }
 
-        public void DoOperation()
+        override internal void Receive(string @event)
         {
-            Console.WriteLine($"[ -- ] Concrete Mediator will soon notify another colleague using this sender," +
-                  $"while is doing his operation of type: {operationType.ToString()}");
-            _Mediator.Notify(this);
+            Console.WriteLine($"[ -- ] The mediator signaled the colleague named {_Name} and will update accordingly.");
         }
     }
 }
