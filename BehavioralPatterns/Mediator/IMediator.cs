@@ -2,6 +2,6 @@ namespace DesignPatterns.BehavioralPatterns.Mediator
 {
     public interface IMediator
     {
-        public void Notify(IColleague sender);
+        public void Notify(AbstractColleague sender, string @event);
     }
 }

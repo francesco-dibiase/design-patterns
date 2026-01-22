@@ -27,7 +27,7 @@ namespace DesignPatterns.BehavioralPatterns.ChainOfResponsibility
                 return false;
             }
             Console.WriteLine($"[ -- ] Passing the responsibility to handle the request to the handler" +
-                              $"that can handle issue of type {_Successor.GetTypeOfHandler()}");
+                              $" that can handle issue of type {_Successor.GetTypeOfHandler()}");
             _Successor.HandleRequest(issue);
             return false;
         }

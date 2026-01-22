@@ -1,50 +1,36 @@
-using DesignPatterns.Utility;
-
 namespace DesignPatterns.BehavioralPatterns.Mediator
 {
     public class Mediator : IMediator
     {
-        private List<IColleague> _Colleagues = new List<IColleague>();
+        private List<AbstractColleague> _Colleagues = new List<AbstractColleague>();
 
-        public IMediator AddColleague(IColleague c)
+        public IMediator AddColleague(AbstractColleague colleague)
         {
-            _Colleagues.Add(c);
+            _Colleagues.Add(colleague);
             return this;
         }
 
-        public IMediator AddColleague(params IColleague[] c)
+        public IMediator AddColleague(params AbstractColleague[] colleagues)
         {
-            _Colleagues.AddRange(c);
+            _Colleagues.AddRange(colleagues);
             return this;
         }
 
-        public IMediator AddColleague(IEnumerable<IColleague> c)
+        public IMediator AddColleague(IEnumerable<AbstractColleague> colleagues)
         {
-            _Colleagues.AddRange(c);
+            _Colleagues.AddRange(colleagues);
             return this;
         }
 
-        public void Notify(IColleague sender)
+        public void Notify(AbstractColleague sender, string @event)
         {
-            IColleague? c = _Colleagues.FirstOrDefault((c) => c.operationType == sender.operationType);
-
-            switch (c?.operationType)
+            if (_Colleagues.Count <= 0) 
             {
-                case ColleagueType.Colleague01:
-                    _Colleagues.FirstOrDefault((c) => c.operationType == ColleagueType.Colleague02)?.DoOperation();
-                    return;
-                case ColleagueType.Colleague02:
-                    _Colleagues.FirstOrDefault((c) => c.operationType == ColleagueType.Colleague03)?.DoOperation();
-                    return;
-                case ColleagueType.Colleague03:
-                    _Colleagues.FirstOrDefault((c) => c.operationType == ColleagueType.Colleague04)?.DoOperation();
-                    return;
-                case ColleagueType.Colleague04:
-                    Console.WriteLine("Last Type of Colleague has done it's operation, returning...");
-                    return;
+                Console.WriteLine("No colleague found");
+                return;
             }
-            Console.WriteLine("No colleague found");
-            return;
+
+            _Colleagues.ForEach(c => { if (c != sender) c.Receive(@event); });
         }
     }
 }
