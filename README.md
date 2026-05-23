@@ -116,7 +116,7 @@ Fornisce un surrogato (o un "segnaposto") che funge da tramite per l’accesso a
 
 ## Chain Of Responsibility
 
-Permette di passare una richiesta lungo una catena di oggetti fino a che uno di essi la gestisce, evitando di accoppiare in modo rigido mittente e destinatario.
+Permette di passare una richiesta lungo una catena di oggetti fino a che uno di essi la gestisce, evitando di accoppiare in modo rigido mittente e destinatario. Ogni oggetto della catena può scegliere se gestire la richiesta o passarla al successivo.
 
 ## Command (Action, Transaction)
 
