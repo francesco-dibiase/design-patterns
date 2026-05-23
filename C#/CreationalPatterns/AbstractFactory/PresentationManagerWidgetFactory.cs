@@ -1,15 +1,18 @@
-namespace DesignPatterns.Creational_Patterns.Abstract_Factory
+namespace DesignPatterns.CreationalPatterns.AbstractFactory
 {
-    public class PresentationManagerWidgetFactory : IWidgetFactory
-    {
-        public PresentationManagerWidgetFactory() { }
-        public Window CreateWindow()
-        {
-            return new PresentationManagerWindow();
-        }
-        public ScrollBar CreateScrollBar()
-        {
-            return new PresentationManagerScrollBar();
-        }
-    }
+      public class PresentationManagerWidgetFactory : IWidgetFactory
+      {
+            public PresentationManagerWidgetFactory()
+            {
+                  Console.WriteLine("[ -- ]\tCreated a PresentationManagerFactory.");
+            }
+            public IDropdown CreateDropdown()
+            {
+                  return new PresentationManagerDropdown();
+            }
+            public IScrollbar CreateScrollbar()
+            {
+                  return new PresentationManagerScrollBar();
+            }
+      }
 }

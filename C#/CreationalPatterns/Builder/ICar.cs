@@ -1,11 +1,10 @@
 ﻿using System.Drawing;
 
-namespace DesignPatterns.Creational_Patterns.Builder
+namespace DesignPatterns.CreationalPatterns.Builder
 {
-    internal interface ICar
-    {
-        void ChangePainting(Color color);
-        void StartEngine();
-        void GearChange();
-    }
+      public interface ICar
+      {
+            void StartEngine();
+            void GearChange();
+      }
 }

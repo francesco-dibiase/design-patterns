@@ -1,8 +1,8 @@
-﻿namespace DesignPatterns.Creational_Patterns.Abstract_Factory
+﻿namespace DesignPatterns.CreationalPatterns.AbstractFactory
 {
-    public interface IWidgetFactory
-    {
-        public Window CreateWindow();
-        public ScrollBar CreateScrollBar();
-    }
+      public interface IWidgetFactory
+      {
+            public IDropdown CreateDropdown();
+            public IScrollbar CreateScrollbar();
+      }
 }

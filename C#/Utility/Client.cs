@@ -4,6 +4,11 @@ using DesignPatterns.Utility;
 using DesignPatterns.BehavioralPatterns.Iterator;
 using DesignPatterns.BehavioralPatterns.Mediator;
 using DesignPatterns.BehavioralPatterns.Memento;
+using DesignPatterns.CreationalPatterns.AbstractFactory;
+using DesignPatterns.Structural_Patterns.Bridge;
+using DesignPatterns.CreationalPatterns.Builder;
+using System.Drawing;
+using DesignPatterns.CreationalPatterns.FactoryMethod;
 
 public static class Client
 {
@@ -19,11 +24,14 @@ public static class Client
             la richiesta o passarla all'handler successivo.
             -----------------------------------------
             """);
-            IHandler handler = new Handler(IssueType.Issue01)
-            .SetNext(new Handler(IssueType.Issue02)
-                  .SetNext(new Handler(IssueType.Issue03)
-                        .SetNext(new Handler(IssueType.Issue04))));
-            handler.HandleRequest(IssueType.Issue02);
+            IHandlerBuilder<IHandler> handlerBuilder = new HandlerBuilder<IHandler>()
+            .AddHandler(new Handler(RequestType.GET))
+            .AddHandler(new Handler(RequestType.POST))
+            .AddHandler(new Handler(RequestType.PUT))
+            .AddHandler(new Handler(RequestType.DELETE));
+            IHandlerFactory handlerFactory = new HandlerFactory<IHandler>(handlerBuilder);
+
+            handlerFactory.HandleRequest(RequestType.PUT);
       }
 
       public static void CommandImplementation()
@@ -123,5 +131,50 @@ public static class Client
                         reagiscano di conseguenza.
                         ------------------------------------------
                         """);
+      }
+
+      public static void AbstractFactoryImplementation()
+      {
+            Console.WriteLine("""
+                        -------------- [ Abstract Factory ] --------------
+                        Intento: Fornisce un contratto per la creazione di oggetti
+                        tra loro correlati o dipendenti da un contesto comune, senza specificare
+                        la loro classe concreta.
+                        --------------------------------------------------
+                        """);
+            IWidgetFactory factory = new MotifWidgetFactory();
+            IScrollbar Scrollbar = factory.CreateScrollbar();
+            IDropdown Window = factory.CreateDropdown();
+
+            Scrollbar.Scroll();
+            Window.Open();
+            Window.Close();
+
+            factory = new PresentationManagerWidgetFactory();
+            Scrollbar = factory.CreateScrollbar();
+            Window = factory.CreateDropdown();
+
+            Scrollbar.Scroll();
+            Window.Open();
+            Window.Close();
+      }
+
+      public static void BuilderImplementation()
+      {
+            CarBuilder carBuilder = new CarBuilder();
+            Car car = carBuilder.MountEngine(new Engine(150))
+                                .Paint(Color.Black)
+                                .MountShift(new Shift())
+                                .BuildCar();
+            car.StartEngine();
+            car.GearChange();
+      }
+
+      public static void FactoryMethodImplementation()
+      {
+            ParserFactory creator = new JSONParserFactory();
+            creator.ProcessFile("testo di prova json.");
+            creator = new XMLParserFactory();
+            creator.ProcessFile("testo di prova XML");
       }
 }

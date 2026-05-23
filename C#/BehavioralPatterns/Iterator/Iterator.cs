@@ -1,44 +1,45 @@
 namespace DesignPatterns.BehavioralPatterns.Iterator
 {
-      public class Iterator<T> : IIterator<T>
+      public class Iterator<T>(IList<T> collection) : IIterator<T>
       {
-            private readonly IList<T> _collection;
+            private readonly IList<T> Collection = collection;
             public int Index { get; private set; } = 0;
 
-            public Iterator(IList<T> collection)
-            {
-                  _collection = collection;
-            }
             public T CurrentItem()
             {
-                  Console.WriteLine($"[ -- ] Current item on the list: {_collection[Index]}");
-                  return _collection[Index];
+                  Console.WriteLine($"[ -- ]\tCurrent item on the list: {Collection[Index]}");
+                  return Collection[Index];
             }
 
-            public T First()
+            public T? First()
             {
-                  if (_collection.Count > 0)
+                  if (Collection.Count > 0)
                   {
                         Index = 0;
-                        return _collection[0];
+                        return Collection[0];
                   }
                   else
                   {
-                        throw new InvalidOperationException($"{nameof(_collection)} is empty");
+                        return default;
                   }
 
             }
 
             public bool IsDone()
             {
-                  return Index >= _collection.Count;
+                  return Index >= Collection.Count;
             }
 
             public T Next()
             {
-                  if (Index >= _collection.Count) throw new InvalidOperationException("No more elements to iterate.");
+                  if (Index >= Collection.Count) throw new InvalidOperationException("No more elements to iterate.");
+                  return Collection[Index++];
+            }
 
-                  return _collection[Index++];
+            public T Previous()
+            {
+                  if (Index <= 0) return Collection[Index];
+                  return Collection[--Index];
             }
       }
 }

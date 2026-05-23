@@ -6,12 +6,12 @@ namespace DesignPatterns.Utility
             StateB = 1,
             StateC = 2
       }
-      public enum IssueType
+      public enum RequestType
       {
-            Issue01 = 0,
-            Issue02 = 1,
-            Issue03 = 2,
-            Issue04 = 3
+            GET = 0,
+            POST = 1,
+            PUT = 2,
+            DELETE = 3
       }
 
       public enum MementoAction

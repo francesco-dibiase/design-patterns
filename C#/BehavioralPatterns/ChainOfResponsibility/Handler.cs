@@ -1,36 +1,25 @@
-using System.ComponentModel;
 using DesignPatterns.Utility;
 
 namespace DesignPatterns.BehavioralPatterns.ChainOfResponsibility
 {
-      public class Handler : IHandler
+      public class Handler(RequestType requestType) : IHandler
       {
-            private IHandler? _Successor;
-            private IssueType _typeOfIssueHandler;
+            private readonly RequestType RequestType = requestType;
 
-            public Handler(IssueType typeOfIssueHandler)
+            public bool TryHandleRequest(RequestType request)
             {
-                  _typeOfIssueHandler = typeOfIssueHandler;
-            }
-
-            public bool HandleRequest(IssueType ofType)
-            {
-                  Console.WriteLine($"[ -- ] Handler that can process issues of type: {_typeOfIssueHandler}" +
-                                    $" processing request of type: {ofType}...");
-                  if (ofType == _typeOfIssueHandler)
+                  if (request == RequestType)
                   {
-                        Console.WriteLine($"[ -- ] Request handled by the handler of the chain" +
-                                          $"that handles issues of type: {ofType}");
+                        Console.WriteLine($"[ -- ]\tRequest fulfilled by handler that can handle the request of type {RequestType}.");
                         return true;
                   }
-                  if (_Successor == null)
+                  else
                   {
-                        Console.WriteLine($"[ -- ] No handler in the chain can handle the request of type: {ofType}");
-                        return false;
+                        Console.WriteLine($"[ -- ]\tThis handler can fulfill requests of type {RequestType}.\n" +
+                              "\tPassing the responsibility to handle the request to the handler" +
+                              $" that can handle the request of type {request}");
                   }
-                  Console.WriteLine($"[ -- ] Passing the responsibility to handle the request to the handler" +
-                        $" that can handle issue of type {typeof(Handler)}");
-                  _Successor.HandleRequest(ofType);
+
                   return false;
             }
       }

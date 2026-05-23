@@ -1,18 +1,15 @@
 ﻿namespace DesignPatterns.BehavioralPatterns.Command
 {
-    class Invoker
-    {
-        private List<ICommand> Commands;
-        public Invoker(params ICommand[] commands)
-        {
-            Commands = [.. commands];
-        }
-        public void Invoke()
-        {
-            foreach (var item in Commands)
+      class Invoker(params ICommand[] commands)
+      {
+            private List<ICommand> Commands = [.. commands];
+
+            public void Invoke()
             {
-                item.Execute();
+                  foreach (var item in Commands)
+                  {
+                        item.Execute();
+                  }
             }
-        }
-    }
+      }
 }

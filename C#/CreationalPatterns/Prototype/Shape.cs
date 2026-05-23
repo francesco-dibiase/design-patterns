@@ -1,36 +1,36 @@
-﻿namespace DesignPatterns.Creational_Patterns.Prototype
+﻿namespace DesignPatterns.CreationalPatterns.Prototype
 {
-    internal abstract class Shape : ICloneable, IEquatable<Shape>
-    {
-        public string Id { get; set; } = string.Empty;
-        public string Type { get; set; } = string.Empty;
+      internal abstract class Shape : ICloneable, IEquatable<Shape>
+      {
+            public string Id { get; set; } = string.Empty;
+            public string Type { get; set; } = string.Empty;
 
-        public abstract object Clone();
-        public abstract object Clone(string id);
+            public abstract object Clone();
+            public abstract object Clone(string id);
 
-        public void Draw()
-        {
-            if (Id.Equals(string.Empty.Trim())) { throw new InvalidOperationException(); }
-            if (Type.Equals(string.Empty.Trim())) { throw new InvalidOperationException(); }
-            Console.WriteLine($"Drawing a {Type} with Id: {Id}");
-        }
-
-        public bool Equals(Shape? other)
-        {
-            if (other == null)
+            public void Draw()
             {
-                Console.WriteLine("Shape has not been instanced yet");
-                return false;
+                  if (Id.Equals(string.Empty.Trim())) { throw new InvalidOperationException(); }
+                  if (Type.Equals(string.Empty.Trim())) { throw new InvalidOperationException(); }
+                  Console.WriteLine($"Drawing a {Type} with Id: {Id}");
             }
-            if (other.Type == this.Type)
+
+            public bool Equals(Shape? other)
             {
-                Console.WriteLine($"{other.Type} with id {other.Id} " +
-                                  $"is the same shape of {this.Type} with id {this.Id}");
-                return true;
+                  if (other == null)
+                  {
+                        Console.WriteLine("Shape has not been instanced yet");
+                        return false;
+                  }
+                  if (other.Type == this.Type)
+                  {
+                        Console.WriteLine($"{other.Type} with id {other.Id} " +
+                                          $"is the same shape of {this.Type} with id {this.Id}");
+                        return true;
+                  }
+                  Console.WriteLine($"{other.Type} with id {other.Id} " +
+                                        $"is NOT the same shape of {this.Type} with id {this.Id}");
+                  return false;
             }
-            Console.WriteLine($"{other.Type} with id {other.Id} " +
-                                  $"is NOT the same shape of {this.Type} with id {this.Id}");
-            return false;
-        }
-    }
+      }
 }

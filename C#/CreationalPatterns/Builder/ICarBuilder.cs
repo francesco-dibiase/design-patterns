@@ -1,7 +1,12 @@
-﻿namespace DesignPatterns.Creational_Patterns.Builder
+﻿using System.Drawing;
+
+namespace DesignPatterns.CreationalPatterns.Builder
 {
-    internal interface ICarBuilder<T> where T : ICar
-    {
-        T BuildCar();
-    }
+      public interface ICarBuilder
+      {
+            public ICarBuilder Paint(Color color);
+            public ICarBuilder MountEngine(Engine engine);
+            public ICarBuilder MountShift(Shift shift);
+            public Car BuildCar();
+      }
 }

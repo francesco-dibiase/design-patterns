@@ -1,29 +1,49 @@
 ﻿using System.Drawing;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
-namespace DesignPatterns.Creational_Patterns.Builder
+namespace DesignPatterns.CreationalPatterns.Builder
 {
-    internal abstract class Car : ICar
-    {
-        public virtual Color _Color { get; set; }
-        public virtual int _HorsePower {  get; set; }
-        public virtual void GearChange()
-        {
-            Console.WriteLine("Gear changed");
-        }
+      public class Car() : ICar
+      {
 
-        public virtual void StartEngine()
-        {
-            Console.WriteLine("Engine Started");
-        }
-        public virtual void ChangePainting(Color color)
-        {
-            _Color = color;
-            Console.WriteLine($"The car painting has been changed to {color.Name}");
-        }
-        public virtual void ChangeHorsePower(int hp)
-        {
-            _HorsePower = hp;
-            Console.WriteLine($"Horse Power has been set to \"{hp} Horse Power\"");
-        }
-    }
+            public Color? Color { get; internal set; } = null;
+            public Engine? Engine { get; internal set; } = null;
+            public Shift? Shift { get; internal set; } = null;
+
+            public void GearChange()
+            {
+                  if (Shift == null) throw new CarNotWorkingException();
+                  Console.WriteLine("[ -- ]\tGear changed");
+            }
+
+            public void StartEngine()
+            {
+                  if (Engine == null) throw new CarNotWorkingException();
+                  Console.WriteLine("[ -- ]\tEngine Started");
+            }
+      }
+
+      public class Engine(int horsePower)
+      {
+            public int HorsePower => horsePower;
+      }
+
+      public class Shift()
+      {
+
+      }
+
+      public class CarNotWorkingException : Exception
+      {
+            public CarNotWorkingException()
+            {
+                  Console.WriteLine("Car is not working.");
+            }
+
+            public CarNotWorkingException(string message) : base(message)
+            {
+                  Console.WriteLine($"Car is not working: {message}");
+            }
+      }
 }

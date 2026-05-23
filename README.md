@@ -118,7 +118,8 @@ Fornisce un surrogato (o un "segnaposto") che funge da tramite per l’accesso a
 
 Permette di passare una richiesta lungo una catena di oggetti fino a che uno di essi la gestisce, evitando di accoppiare in modo rigido mittente e destinatario. Ogni oggetto della catena può scegliere se gestire la richiesta o passarla al successivo.
 
-## Command (Action, Transaction)
+## Command 
+(Action, Transaction)
 
 Incapsula una richiesta in un oggetto, permettendoti di parametrizzare il client con diverse richieste, code o richieste di log, consentendo inoltre di gestire anche operazioni annullabili o ripetibili.
 
